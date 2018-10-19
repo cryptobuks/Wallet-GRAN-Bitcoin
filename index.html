@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv='content-type' content='text/html; charset=utf-8'>
+	<!-- <link rel='icon' type='image/png' href='/favicos/favicon.png'/>-->
+	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
+	<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js'></script>
+	<script src='https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js'></script>
+	<link rel='stylesheet' href='/css/main.css'>
+	<title>Wallet GRAN Bitcoin</title>
+</head>
+<body>
+	<div id='topbar'>
+		<center><a href=''><img src='/img/logo1.png' id='logo'></a></center>
+	</div>
+	<div id='wallet' class='container' style='display:none'>
+		<div class='container'>
+			<div class='row'>
+				<div class='section wide col'>
+					<h3 class='section-title'>Enviar GRAN Bitcoin</h3> 
+					<div class='inner'>
+						<div class='txDiv' style='margin-bottom:15px'>Dirección: <input class='txInput' type='text' id='txAddress'><br></div>
+						<div class='txDiv'>Monto: <input class='txInput' type='text' id='txAmount'><br><button class='btn' id='send'>Enviar Tokens</button></div>
+					</div>
+				</div>
+			</div>
+			<div class='row justify-content-between'>
+				<div class='col-7'>
+					<div class='section'>
+					<h3 class='section-title'>Recibir</h3>
+						<div class='inner'>
+							<center><p><b>Dirección Pública:</b> <span id='eth-address'></span></p></center>
+							<center><img id='qr-address'></center>
+						</div>
+					</div>
+				</div>
+				<div class='col-4'>
+					<div class='section'>
+						<h3 class='section-title'>Saldo disponible</h3>
+						<div class='inner'>
+							<center><h1 id='balance'></h1></center>
+							<center><h3>GRAN</h3></center>
+						</div>
+					</div>
+					<div class='section'>
+						<h3 class='section-title'>Recursos adicionales</h3>
+						<div class='inner' id='resources'>
+							<a role='button' class='btn resource' id='blockexplorer'>Explorador de Bloques</a>
+							<a role='button' class='btn resource' id='project-web-page' style='margin-top:10px'>Proyecto GRAN Bitcoin</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class='row'>
+				<div class='section wide col'>
+				<h3 class='section-title'>Historial de transacciones</h3> 
+					<div id='txList' class='list-group'></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id='no-metamask' class='container' style='display:none'>
+		<center><div style='margin:20px;'>
+			<h1>Esta wallet requiere MetaMask</h1>
+		</div>
+		<div>
+			<a id='dl-mm' href='#'>
+				<img src='/img/dl-metamask.png'>
+			</a>
+			<div style='margin:20px;'>
+				<div style='margin:10px;'>
+					<h1>¿Qué es MetaMask?</h1>
+					<p>MetaMask es una extensión para Chrome, Opera y Firefox que permite al navegador interactuar con la Blockchain de Ethereum. MetaMask también tiene una wallet de Etherreum - es allí donde sus token serán almacenados para usar la Wallet del GRAN Bitcoin.</p>
+				</div>
+				<div style='margin:10px;'>
+					<h1>¿Por qué necesito MetaMask?</h1>
+					<p>El GRAN Bitcoin es un  ERC-20 token construido sobre la blockchain de  Ethereum. Esto significa que, para interactuar con el token, su navegador debe poder interactuar con la Blockchain de Ethereum. La increible seguridad de MetaMask, también le asegura que sus tokens estarán seguros.</p>
+				</div>
+				<div style='margin:10px;'>
+					<h1>¿Es seguro MetaMask?</h1>
+					<p>MetaMask es extremedadamente seguro y su uso está muy extendido en la comunidad de Ethereum. Sus llaves privadas se alamacenan en su máquina personal y son cifradas con la contraseña de MetaMask, asegurando así la seguridad de su wallet. Muchas de las aplicaciones web más confiables en la comunidad de Ethereum usan MetaMask por la facilidad de su uso y seguridad, incluyendo <a href='https://www.myetherwallet.com/'>MyEtherWallet</a>. Si tiene alguna duda de la seguridad de MetaMask, puede revisar su  <a href='https://github.com/MetaMask/metamask-plugin'>GitHub</a>. MetaMask es de código abierto!</p>
+					<p>Para más información revise <a href='https://metamask.io/'>el sitio web de MetaMask</a>.</p>
+				</div>
+
+			</div>
+		</div></center>
+	</div>
+	<div id='not-logged-in' class='container' style='display:none;'>
+		<center><div style='margin:10px;'>
+			<h1>Debe registrarse en MetaMask</h1>
+		</div>
+		<div>
+			<img src='/img/login-metamask.png'>
+			<div style='margin:20px;'>
+				<div style='margin:10px;'>
+					<p>Usted tiene MetaMask instalado, pero no se ha registrado o no ha ingresado a su cuenta. Debe ingresar a su wallet de MetaMask para poder usar los token de Winsshar. Si no está seguro de cómo usar MetaMask, revise <a href='https://www.cryptocompare.com/wallets/guides/how-to-use-metamask/'>este tutorial</a>. Para mayor información, revise el <a href='https://metamask.io/'>sitio web de MetaMask</a>.</p>
+				</div>
+			</div>
+		</div></center>
+	</div>
+	<div id='wrong-browser' class='container' style='display:none'>
+		<center><div style='margin:20px;'>
+			<h1>Esta wallet requiere MetaMask</h1>
+		</div>
+		<div>
+			<img src='/img/browser-metamask.png'>
+			<div style='margin:10px;'>
+				<h2>Utilice un navegador que soporte MetaMask</h2>
+				<p><a href='https://www.google.com/chrome/'>Google Chrome</a> | <a href='https://www.mozilla.org/en-US/firefox/new/'>Mozilla Firefox</a> | <a href='http://www.opera.com/download'>Opera</a> | <a href='https://brave.com/'>Brave</a></p>
+			</div>
+			<div style='margin:20px;'>
+				<div style='margin:10px;'>
+					<h1>¿Qué es MetaMask?</h1>
+					<p>MetaMask es una extensión para Chrome, Opera y Firefox que permite al navegador interactuar con la Blockchain de Ethereum. MetaMask también tiene una wallet de Etherreum - es allí donde sus token serán almacenados para usar la Wallet del GRAN Bitcoin.</p>
+				</div>
+				<div style='margin:10px;'>
+					<h1>¿Por qué necesito MetaMask?</h1>
+					<p>El GRAN Bitcoin es un  ERC-20 token construido sobre la blockchain de  Ethereum. Esto significa que, para interactuar con el token, su navegador debe poder interactuar con la Blockchain de Ethereum. La increible seguridad de MetaMask, también le asegura que sus tokens estarán seguros.</p>
+				</div>
+				<div style='margin:10px;'>
+					<h1>¿Es seguro MetaMask?</h1>
+					<p>MetaMask es extremedadamente seguro y su uso está muy extendido en la comunidad de Ethereum. Sus llaves privadas se alamacenan en su máquina personal y son cifradas con la contraseña de MetaMask, asegurando así la seguridad de su wallet. Muchas de las aplicaciones web más confiables en la comunidad de Ethereum usan MetaMask por la facilidad de su uso y seguridad, incluyendo <a href='https://www.myetherwallet.com/'>MyEtherWallet</a>. Si tiene alguna duda de la seguridad de MetaMask, puede revisar su  <a href='https://github.com/MetaMask/metamask-plugin'>GitHub</a>. MetaMask es de código abierto!</p>
+					<p>Para más información revise <a href='https://metamask.io/'>el sitio web de MetaMask</a>.</p>
+				</div>
+
+			</div>
+		</div></center>
+	</div>
+	<script src='/js/index.js?v1.0'></script>
+</body>
+</html>
